@@ -1,12 +1,14 @@
 package ru.daniel.restapi.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 @Data
 @Entity
 @Table(name = "cats")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,15 +22,6 @@ public class Cat {
 
     @Column(name = "mass", nullable = false)
     private double weight;
-
-    public Cat(@NonNull String name, int age, double weight) {
-        this.name = name;
-        this.age = age;
-        this.weight = weight;
-    }
-
-    public Cat() {
-    }
 
     @Override
     public String toString() {
