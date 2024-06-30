@@ -14,7 +14,7 @@ public class SwaggerConfig {
     public OpenAPI api() {
         return new OpenAPI()
                 .servers(
-                        List.of(new Server().url("https://localhost:8080"))
+                        List.of(new Server().url(System.getenv("SERVER_API")))
                 )
                 .info(
                         new Info().title("Cats REST API")
