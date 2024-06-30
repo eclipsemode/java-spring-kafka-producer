@@ -1,44 +1,50 @@
 package ru.daniel.restapi.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.daniel.restapi.entity.Cat;
+import ru.daniel.restapi.repository.CatRepository;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+
+@Slf4j
 @RestController
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class MainController {
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final CatRepository catRepository;
+
+    @PostMapping("/add")
+    public Cat addCat(@RequestBody Cat cat) {
+        log.info("New row: " + catRepository.save(cat));
+        return cat;
+    }
+
+    @GetMapping("/all")
+    public List<Cat> getAllCats() {
+        return catRepository.findAll();
+    }
 
     @GetMapping
-    public String getHello() {
-        return "Hello World";
+    public Cat getCatById(@RequestParam int id) {
+        return catRepository.findById(id).orElseThrow();
     }
 
-    @GetMapping("/cat")
-    public String giveCat() {
-        Cat cat = new Cat("Barsik", 5, 3.9);
-        String jsonData = null;
-        try {
-            jsonData = objectMapper.writeValueAsString(cat);
-        } catch (JsonProcessingException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        return jsonData;
+    @DeleteMapping("/{id}")
+    public void deleteCat(@PathVariable int id) {
+        catRepository.deleteById(id);
     }
 
-    @PostMapping("/special")
-    public String giveSpecialCat(@RequestParam String name) {
-        Cat cat = new Cat(name, 5, 3.9);
-        String jsonData = null;
-        try {
-            jsonData = objectMapper.writeValueAsString(cat);
-        } catch (JsonProcessingException e) {
-            System.out.println("Error: " + e.getMessage());
+    @PutMapping
+    public Cat updateCat(@RequestBody Cat cat) {
+        if (catRepository.existsById(cat.getId())) {
+            log.info("Updating row: " + catRepository.save(cat));
+            return cat;
         }
-        return jsonData;
+
+        throw new NoSuchElementException();
     }
 }
