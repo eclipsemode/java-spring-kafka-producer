@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
 import ru.daniel.restapi.DTO.CatDTO;
 import ru.daniel.restapi.entity.Cat;
