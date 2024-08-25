@@ -15,7 +15,7 @@ import java.util.UUID;
 public class DogController {
     private final DogRepository dogRepository;
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public List<Dog> getAll() {
         return dogRepository.findAll();
     }

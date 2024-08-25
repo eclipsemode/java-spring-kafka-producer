@@ -35,7 +35,7 @@ public class MainController {
                 .weight(catDTO.getWeight())
                 .build();
 
-        log.info("New row: " + catRepository.save(newCat));
+        log.info("New row: {}", catRepository.save(newCat));
 
         return newCat;
     }
@@ -58,7 +58,7 @@ public class MainController {
     @PutMapping
     public Cat updateCat(@RequestBody Cat cat) {
         if (catRepository.existsById(cat.getId())) {
-            log.info("Updating row: " + catRepository.save(cat));
+            log.info("Updating row: {}", catRepository.save(cat));
             return cat;
         }
 
