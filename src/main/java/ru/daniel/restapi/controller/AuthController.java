@@ -21,7 +21,7 @@ public class AuthController {
     @Value("${grant-type}")
     private String grantType;
 
-    @PostMapping("/auth")
+    @GetMapping("/auth")
     public String auth(@RequestBody AuthDTO authDTO) {
         var headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
