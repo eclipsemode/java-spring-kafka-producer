@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.daniel.restapi.DTO.CatDTO;
 import ru.daniel.restapi.entity.Cat;
 import ru.daniel.restapi.repository.CatRepository;
+import ru.daniel.restapi.service.MailSenderService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -21,6 +22,7 @@ import java.util.NoSuchElementException;
 public class MainController {
 
     private final CatRepository catRepository;
+    private final MailSenderService mailSenderService;
 
     @Operation(
             summary = "Add cat to database",
@@ -63,5 +65,16 @@ public class MainController {
         }
 
         throw new NoSuchElementException();
+    }
+
+    @GetMapping("/hello")
+    public void sayHelloFromCat(@RequestParam int id) {
+        var cat = catRepository.findById(id).orElseThrow();
+
+        mailSenderService.sendMail(
+                "eclipsemod-post@yandex.ru",
+                "Hello from Cats",
+                "Hello, my name is " + cat.getName() + "."
+        );
     }
 }
