@@ -3,9 +3,7 @@ package ru.daniel.restapi.controller;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import ru.daniel.restapi.DTO.AuthDTO;
 
@@ -23,7 +21,7 @@ public class AuthController {
     @Value("${grant-type}")
     private String grantType;
 
-    @GetMapping("/auth")
+    @PostMapping("/auth")
     public String auth(@RequestBody AuthDTO authDTO) {
         var headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);

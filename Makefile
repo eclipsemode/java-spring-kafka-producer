@@ -7,7 +7,7 @@ build-no-tests:
 run:
 	java -jar target/*.jar
 docker-compose-up:
-	docker-compose -f docker/docker-compose.yml up -d
+	docker-compose -f docker/docker-compose.yml up
 docker-compose-down:
 	docker-compose -f docker/docker-compose.yml down
 	docker-compose -f docker/docker-compose.yml rm -fsv

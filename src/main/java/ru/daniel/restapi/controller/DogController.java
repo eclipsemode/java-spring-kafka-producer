@@ -39,5 +39,4 @@ public class DogController {
     public void deleteDog(@PathVariable UUID id) {
         dogRepository.deleteById(id);
     }
-
 }
