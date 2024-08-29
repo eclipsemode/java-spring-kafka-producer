@@ -5,7 +5,7 @@ build-no-tests:
 	mvn package -DskipTests
 	cp target/*.jar docker
 run:
-	java -jar target/*.jar
+	mvnw spring-boot:run
 docker-compose-up:
 	docker-compose -f docker/docker-compose.yml up
 docker-compose-down:
