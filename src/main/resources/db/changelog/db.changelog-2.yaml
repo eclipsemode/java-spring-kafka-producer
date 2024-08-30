@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-into-pig
+      author: daniel
+      comment: insert pig into table
+      changes:
+        - insert:
+            tableName: pig
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: Hryunya
+              - column:
+                  name: age
+                  value: 12
+              - column:
+                  name: city
+                  value: Moscow

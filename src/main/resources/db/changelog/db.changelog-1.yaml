@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id:  create-table-pig
+      author:  daniel
+      comment: first migration
+      changes:
+        - createTable:
+            tableName:  pig
+            columns:
+              - column:
+                  name:  id
+                  type:  int
+                  autoIncrement:  true
+                  constraints:
+                    primaryKey:  true
+                    nullable:  false
+              - column:
+                  name:  name
+                  type:  varchar(50)
+              - column:
+                  name:  age
+                  type:  int
+              - column:
+                  name:  city
+                  type:  varchar(63)
